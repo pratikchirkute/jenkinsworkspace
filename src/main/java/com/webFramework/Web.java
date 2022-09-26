@@ -12,6 +12,7 @@ public class Web extends baseClass{
         driver = null;
         String browser = getProperty("browser");
 
+        System.out.println("##################"+System.getProperty("os.name")+"########################");
         switch (browser){
             case "chrome":
                 if (System.getProperty("os.name").toLowerCase().contains("windows")){
