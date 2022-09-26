@@ -2,6 +2,7 @@ package com.webFramework;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -23,6 +24,9 @@ public class Web extends baseClass{
                 }
 
                 driver = new ChromeDriver();
+                break;
+            case "firefox":
+                driver = new FirefoxDriver();
                 break;
             default:
                 System.setProperty("webdriver.chrome.driver",getProperty("webdriver.chrome.driver"));
