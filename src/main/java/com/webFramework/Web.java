@@ -1,5 +1,6 @@
 package com.webFramework;
 
+import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
@@ -48,6 +49,7 @@ public class Web extends baseClass{
     public void launchUrl(String url) throws IOException {
         driver = getDriver();
         driver.get(url);
+        System.out.println(driver.getTitle());
     }
 
     public void quitDriver() throws IOException {
