@@ -15,20 +15,11 @@ public class baseClass {
         File folder = new File(resourceDirectory);
         File[] listOfFiles = folder.listFiles();
 
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isFile()) {
-                System.out.println("File " + listOfFiles[i].getName());
-            } else if (listOfFiles[i].isDirectory()) {
-                System.out.println("Directory " + listOfFiles[i].getName());
-            }
-        }
-
         Properties properties = new Properties();
         for (int i = 0; i < listOfFiles.length; i++) {
             properties.load(new FileInputStream(listOfFiles[i]));
             properties.load(new FileInputStream(listOfFiles[i]));
         }
-//        properties.load(new FileInputStream(resourceDirectory));
         propValue = properties.getProperty(propertyName);
         return propValue;
 

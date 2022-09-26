@@ -1,6 +1,5 @@
 package com.webFramework;
 
-import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
@@ -8,10 +7,17 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.IOException;
-import java.util.Locale;
 
 public class Web extends baseClass{
     WebDriver driver;
+
+    public Web(){
+        //default constructor
+    }
+
+    public Web (WebDriver webDriver){
+        driver = webDriver;
+    }
     public WebDriver getDriver() throws IOException {
         driver = null;
         String browser = getProperty("browser");
@@ -32,7 +38,7 @@ public class Web extends baseClass{
                 FirefoxBinary firefoxBinary = new FirefoxBinary();
                 firefoxBinary.addCommandLineOptions("--headless");
                 firefoxBinary.addCommandLineOptions("--no-sandbox");
-                System.setProperty("webdriver.gecko.driver", "/usr/bin/geckodriver");
+                System.setProperty("webdriver.gecko.driver", getProperty("webdriver.gecko.driver"));
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.setBinary(firefoxBinary);
                 driver = new FirefoxDriver(firefoxOptions);
@@ -46,14 +52,5 @@ public class Web extends baseClass{
 
     }
 
-    public void launchUrl(String url) throws IOException {
-        driver = getDriver();
-        driver.get(url);
-        System.out.println(driver.getTitle());
-    }
-
-    public void quitDriver() throws IOException {
-        driver.quit();
-    }
 
 }
