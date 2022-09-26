@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.IOException;
+import java.util.Locale;
 
 public class Web extends baseClass{
     WebDriver driver;
@@ -13,7 +14,13 @@ public class Web extends baseClass{
 
         switch (browser){
             case "chrome":
-                System.setProperty("webdriver.chrome.driver",getProperty("webdriver.chrome.driver"));
+                if (System.getProperty("os.name").toLowerCase().contains("windows")){
+                    System.setProperty("webdriver.chrome.driver",getProperty("webdriver.chrome.driver.win"));
+                }
+                else if (System.getProperty("os.name").toLowerCase().contains("linux")){
+                    System.setProperty("webdriver.chrome.driver",getProperty("webdriver.chrome.driver.lin"));
+                }
+
                 driver = new ChromeDriver();
                 break;
             default:
