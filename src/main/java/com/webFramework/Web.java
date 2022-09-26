@@ -2,7 +2,9 @@ package com.webFramework;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -26,7 +28,13 @@ public class Web extends baseClass{
                 driver = new ChromeDriver();
                 break;
             case "firefox":
-                driver = new FirefoxDriver();
+                FirefoxBinary firefoxBinary = new FirefoxBinary();
+                firefoxBinary.addCommandLineOptions("--headless");
+                firefoxBinary.addCommandLineOptions("--no-sandbox");
+                System.setProperty("webdriver.gecko.driver", "/usr/bin/geckodriver");
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.setBinary(firefoxBinary);
+                driver = new FirefoxDriver(firefoxOptions);
                 break;
             default:
                 System.setProperty("webdriver.chrome.driver",getProperty("webdriver.chrome.driver"));
