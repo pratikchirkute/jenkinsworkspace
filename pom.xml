@@ -10,6 +10,7 @@
     <modules>
         <module>API_AUT</module>
         <module>WebUI_AUT</module>
+        <module>MobileTest</module>
     </modules>
     <properties>
         <selenium.version>4.4.0</selenium.version>
@@ -56,6 +57,12 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>4.4.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
