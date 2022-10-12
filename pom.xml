@@ -10,7 +10,6 @@
     <modules>
         <module>API_AUT</module>
         <module>WebUI_AUT</module>
-        <module>MobileTest</module>
     </modules>
     <properties>
         <selenium.version>4.4.0</selenium.version>
