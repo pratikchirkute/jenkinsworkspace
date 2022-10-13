@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'markhobson/maven-firefox:jdk-8'
+            image 'linuxserver/firefox:latest'
             args '-v /root/.m2:/root/.m2'
         }
     }
@@ -21,11 +21,13 @@ pipeline {
 
         stage('API') {
             steps {
-                sh 'mvn test -Dtest=REST_ASSURED_Test -pl API_AUT'
-            }
-            post {
-                always {
-                    junit 'API_AUT/target/surefire-reports/*.xml'
+                script {
+                    try {
+                        sh 'mvn test -Dtest=REST_ASSURED_Test -pl API_AUT'
+                   } catch (err) {
+                        echo err.getMessage()
+                    }
+                    echo currentBuild.result
                 }
             }
         }
