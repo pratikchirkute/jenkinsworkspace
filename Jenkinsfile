@@ -19,7 +19,7 @@ pipeline {
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml'
+                    junit 'API_AUT/target/surefire-reports/*.xml'
                 }
             }
         }
