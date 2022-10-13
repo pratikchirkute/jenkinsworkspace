@@ -8,7 +8,14 @@ pipeline {
     stages {
         stage('WebUI') {
             steps {
-                sh 'mvn test -Dsuite=testSuite.xml -pl WebUI_AUT'
+                script {
+                    try {
+                        sh 'mvn test -Dsuite=testSuite.xml -pl WebUI_AUT'
+                   } catch (err) {
+                        echo err.getMessage()
+                    }
+                    echo currentBuild.result
+                }
             }
         }
 
