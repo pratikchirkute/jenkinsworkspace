@@ -1,18 +1,13 @@
 pipeline {
     agent {
         docker {
-            image 'maven:3-alpine'
+            image 'markhobson:maven-firefox'
             args '-v /root/.m2:/root/.m2'
         }
     }
 
     stages {
-        stage('WebUI') {
-            agent {
-                docker {
-                    image 'Alpine-Firefox'
-                }
-            }
+        stage('WebUI') {            
             steps {
                 sh 'mvn test -Dsuite=testSuite.xml -pl WebUI_AUT'
             }
