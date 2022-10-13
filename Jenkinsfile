@@ -7,11 +7,16 @@ pipeline {
     }
 
     stages {
-        // stage('WebUI') {
-        //     steps {
-        //         sh 'mvn test -Dsuite=testSuite.xml -pl WebUI_AUT'
-        //     }
-        // }
+        stage('WebUI') {
+            agent {
+                docker {
+                    image 'Alpine-Firefox'
+                }
+            }
+            steps {
+                sh 'mvn test -Dsuite=testSuite.xml -pl WebUI_AUT'
+            }
+        }
 
         stage('API') {
             steps {
