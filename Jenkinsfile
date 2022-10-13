@@ -7,13 +7,13 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
-            steps {
-                sh 'mvn test -Dsuite=testSuite.xml -pl WebUI_AUT'
-            }
-        }
+        // stage('WebUI') {
+        //     steps {
+        //         sh 'mvn test -Dsuite=testSuite.xml -pl WebUI_AUT'
+        //     }
+        // }
 
-        stage('Test') {
+        stage('API') {
             steps {
                 sh 'mvn test -Dtest=REST_ASSURED_Test -pl API_AUT'
             }
