@@ -9,24 +9,18 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn test -Dsuite=testSuite.xml -pl WebUI_AUT'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh 'mvn test -Dtest=REST_ASSURED_Test -pl API_AUT'
             }
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
                 }
-            }
-        }
-
-        stage('Deliver') {
-            steps {
-                sh './jenkins/scripts/deliver.sh'
             }
         }
     }
