@@ -1,19 +1,32 @@
-pipeline {
+Pipeline {
     agent {
         docker {
-            image ‘maven:3-alpine’
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
         }
     }
+
     stages {
-        stage('API Automation') {
+        stage('Build') {
             steps {
-                sh 'node --version'
-                echo 'Stage1: API automation..'
+                sh 'mvn -B -DskipTests clean package'
             }
         }
-        stage('WebUI Automation') {
+
+        stage('Test') {
             steps {
-                echo 'Stage2: UI automation..'
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
             }
         }
     }
