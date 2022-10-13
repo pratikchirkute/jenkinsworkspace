@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'markhobson:maven-firefox'
+            image 'markhobson/maven-firefox:jdk-8'
             args '-v /root/.m2:/root/.m2'
         }
     }
