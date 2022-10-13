@@ -5,9 +5,8 @@ pipeline {
             args '-v /root/.m2:/root/.m2'
         }
     }
-
     stages {
-        stage('WebUI') {            
+        stage('WebUI') {
             steps {
                 sh 'mvn test -Dsuite=testSuite.xml -pl WebUI_AUT'
             }
