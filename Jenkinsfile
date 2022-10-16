@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'pratikchirkute/firefoxmavenpratik:latest'
-            args '-v /root/.m2:/root/.m2'
+            args '--network=host'
         }
     }
     stages {
