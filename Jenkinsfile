@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'linuxserver/firefox:latest'
+            image 'pratikchirkute/firefoxmavenpratik:latest'
             args '-v /root/.m2:/root/.m2'
         }
     }
