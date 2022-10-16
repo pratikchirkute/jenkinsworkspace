@@ -7,6 +7,9 @@ pipeline {
     }
     stages {
         stage('WebUI') {
+            environment {
+                  HOME="."
+                }
             steps {
                 script {
                     try {
@@ -20,6 +23,9 @@ pipeline {
         }
 
         stage('API') {
+            environment {
+                  HOME="."
+                }
             steps {
                 script {
                     try {
