@@ -1,15 +1,11 @@
 pipeline {
     agent {
         docker {
-            image 'pratikchirkute/firefoxmavenpratik:latest'
-            args '--network=host'
+            image 'selenium/standalone-firefox-debug:latest'
         }
     }
     stages {
         stage('WebUI') {
-            environment {
-                  HOME="."
-                }
             steps {
                 script {
                     try {
@@ -23,9 +19,6 @@ pipeline {
         }
 
         stage('API') {
-            environment {
-                  HOME="."
-                }
             steps {
                 script {
                     try {
