@@ -11,6 +11,7 @@ public class webTest extends Web {
     public void sauceWebCheck() throws IOException {
         WebDriver driver = getDriver();
         driver.get(getProperty("base.url.saucedemo"));
+        System.out.println(driver.getTitle());
         Assert.assertTrue("Swag Labs".matches(driver.getTitle()));
         driver.quit();
     }
