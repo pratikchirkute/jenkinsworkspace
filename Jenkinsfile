@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'selenium/standalone-firefox-debug:latest'
+            image 'selenium/node-firefox-debug:latest'
         }
     }
     stages {
