@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'pratikchirkute/testcontainer:1.7'
+            image 'pratikchirkute/fedoracontainer:1.9'
         }
     }
     stages {
