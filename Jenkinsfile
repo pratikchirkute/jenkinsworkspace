@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'pratikchirkute/testcontainer:1.4'
+            image 'pratikchirkute/testcontainer:1.5'
         }
     }
     stages {
