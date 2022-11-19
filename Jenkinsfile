@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'pratikchirkute/firefoxmavenpratik:latest'
+            image 'pratikchirkute/fedoracontainer:1.9'
         }
     }
     stages {
