@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.IOException;
 
@@ -23,6 +24,7 @@ public class Web extends baseClass{
         String browser = getProperty("browser");
 
         System.out.println("##################"+System.getProperty("os.name")+"########################");
+        WebDriver driver = null;
         switch (browser){
             case "chrome":
                 if (System.getProperty("os.name").toLowerCase().contains("windows")){
@@ -35,13 +37,19 @@ public class Web extends baseClass{
                 driver = new ChromeDriver();
                 break;
             case "firefox":
-                FirefoxBinary firefoxBinary = new FirefoxBinary();
-                firefoxBinary.addCommandLineOptions("--headless");
-                firefoxBinary.addCommandLineOptions("--no-sandbox");
-                System.setProperty("webdriver.gecko.driver", getProperty("webdriver.gecko.driver"));
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.setBinary(firefoxBinary);
-                driver = new FirefoxDriver(firefoxOptions);
+                if (System.getProperty("os.name").toLowerCase().contains("windows")){
+                    System.setProperty("webdriver.gecko.driver", getProperty("webdriver.gecko.driver.win"));
+                    driver=new FirefoxDriver();
+                }
+                else if (System.getProperty("os.name").toLowerCase().contains("linux")){
+                    FirefoxBinary firefoxBinary = new FirefoxBinary();
+                    firefoxBinary.addCommandLineOptions("--headless");
+                    firefoxBinary.addCommandLineOptions("--no-sandbox");
+                    System.setProperty("webdriver.gecko.driver", getProperty("webdriver.gecko.driver.lin"));
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.setBinary(firefoxBinary);
+                    driver = new FirefoxDriver(firefoxOptions);
+                }
                 break;
             default:
                 System.setProperty("webdriver.chrome.driver",getProperty("webdriver.chrome.driver"));

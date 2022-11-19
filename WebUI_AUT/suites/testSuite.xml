@@ -3,7 +3,7 @@
 <suite name="Practice Suite">
     <test name="Test JenkinsRun">
         <classes>
-            <class name="ConsolePrint"/>
+<!--            <class name="ConsolePrint"/>-->
             <class name="webTest"/>
         </classes>
     </test>
